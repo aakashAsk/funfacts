@@ -1,0 +1,42 @@
+.selected {
+    padding: 10px 15px;
+    background: #ae020b;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.fact-form.selected {
+    background-color: #fff;
+    display: initial;
+}
+
+.blog-form.selected {
+    display: initial;
+    background-color: #fff;
+}
+
+.container > div {
+    display: none;
+}
+
+.modal-popup{
+    position: fixed;
+    top: 0;
+    background: #00000000;
+    z-index: 999999;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-container {
+    width: max-content;
+    height: 400px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 9px #00000038;
+}
+
+.category-image {
+    height: 50px;
+    width: 50px;
+}
