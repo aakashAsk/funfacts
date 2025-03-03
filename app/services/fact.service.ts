@@ -9,3 +9,8 @@ export const getFacts = async (limit:number = 0, index:number = 0) => {
     const res = await axios.get(`http://localhost:3000/apis/fact?${limit ? 'limit='+limit : ''}&${index ? 'index='+index : ''}`);
     return res.data.data;
 }
+
+export const getSliderFacts = async (limit:number = 3) => {
+    const res = await axios.get(`http://localhost:3000/apis/fact?${limit ? 'limit='+limit : ''}&random=true`);
+    return res.data.data;
+}

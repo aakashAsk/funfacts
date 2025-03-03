@@ -5,7 +5,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./style.css";
-export default function Slider() {
+import { FactInterace } from '@/interfaces/fact.interface';
+
+const Slider = ({slides}) => {
     const trendingSlides = [
         {
             id: 1,
@@ -45,10 +47,10 @@ export default function Slider() {
                 <div className="absolute top-1/2 -translate-y-1/2 right-4 z-10 w-12 h-12 flex items-center justify-center bg-white bg-opacity-50 rounded-full cursor-pointer hover:bg-opacity-75 transition-all duration-200 group-hover:opacity-100 opacity-0 swiper-button-next">
                     <i className="fas fa-chevron-right text-gray-800"></i>
                 </div> */}
-                {trendingSlides.map((slide) => (
-                    <SwiperSlide key={slide.id}>
+                {slides.map((slide) => (
+                    <SwiperSlide key={slide._id}>
                         <div className="relative h-full">
-                            <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
+                            <img src={slide.image} alt={slide.title} className="w-full h-full" />
                             <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 flex items-center">
                                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
                                     <h2 className="text-4xl font-bold mb-4">{slide.title}</h2>
@@ -63,3 +65,5 @@ export default function Slider() {
         </div>
     )
 }
+
+export default Slider;

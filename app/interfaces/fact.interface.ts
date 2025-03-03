@@ -1,4 +1,4 @@
-export type fact = {
+export type FactInterace = {
   title: string;
   image: string;
   description: string;

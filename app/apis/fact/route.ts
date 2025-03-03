@@ -66,28 +66,28 @@ export async function GET(request: Request) {
         //fetch searchParams from url
         const limitParam = searchParams.get("limit");
         const indexParam = searchParams.get("index");
+        const randomParam = searchParams.get("random");
 
         const limit = limitParam ? parseInt(limitParam as string) : null;
-        const index = indexParam ? parseInt(indexParam as string) : null;
+        const index = indexParam ? parseInt(indexParam as string) : 0;
+        const random = randomParam == "true" ? true : false;
 
         // Sort by latest created
-        let query = Fact.find().sort({ createdAt: -1 }); 
+        let facts = await Fact.find().sort({ createdAt: -1 }); 
 
-        // Apply limit only if it exists
-        if (limit && index) {
-            query = query.limit(limit).skip(index); 
+        if(limit) {
+            facts = facts.slice(index, limit);
         }
 
-        
-        const facts = await query;
-
-        for (let i = facts.length - 1; i > 0; i--) {
-            // Generate a random index from 0 to i
-            const j = Math.floor(Math.random() * (i + 1));
-        
-            // Swap elements at i and j
-            [facts[i], facts[j]] = [facts[j], facts[i]];
-          }
+        if(random) {
+            for (let i = facts.length - 1; i > 0; i--) {
+                // Generate a random index from 0 to i
+                const j = Math.floor(Math.random() * (i + 1));
+            
+                // Swap elements at i and j
+                [facts[i], facts[j]] = [facts[j], facts[i]];
+            }
+        }
         return NextResponse.json({ success: true, data: facts, status: 200 });
     }
     catch(err) {

@@ -2,18 +2,18 @@
 import React from "react";
 import Fact from "./fact";
 import { useRouter } from "next/navigation";
-import { fact } from '@/interfaces/fact.interface';
+import { FactInterace } from '@/interfaces/fact.interface';
 
 interface Props {
     title: string;
     subTitle: string;
     hideTitle: boolean;
-    factList: fact[];
+    factList: FactInterace[];
 }
 
 
 
- const FactsList:React.FC<Props> = ({hideTitle, factList}) => {
+ const FactsList:React.FC<Props> = ({hideTitle, factList, title}) => {
       const router = useRouter();
       const clickHandle = () => {
         router.push("/facts");
@@ -25,7 +25,7 @@ interface Props {
             {
               hideTitle ? 
               ( <div className="flex justify-between items-center mb-8">
-                  <h2 className="text-3xl font-bold text-gray-900">Random Facts</h2>
+                  <h2 className="text-3xl font-bold text-gray-900">{title}</h2>
                   <button className="rounded bg-indigo-600 text-white px-6 py-3 font-medium hover:bg-indigo-700 transition-colors whitespace-nowrap">See All Facts</button>
               </div> ) : null 
             }

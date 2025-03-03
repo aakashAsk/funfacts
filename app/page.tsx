@@ -8,17 +8,19 @@ import Search from './components/search/search';
 import Slider from './components/slider/slider';
 import { CategoryProps } from '@/interfaces/category.interface';
 import { getAllCategories } from '@/services/category.service';
-import { getFacts } from "@/services/fact.service";
+import { getFacts, getSliderFacts } from "@/services/fact.service";
+import { FactInterace } from '@/interfaces/fact.interface';
 
 export default async function Home() {
   const categories:CategoryProps[] = await getAllCategories();
   const factList = await getFacts(6);
+  const sliderFacts  = await getSliderFacts(4);
   return (
     <div>
       <Header fixed={false}/>
       <main>
 
-        <Slider />
+        <Slider  slides={sliderFacts}/>
 
         {/* search component */}
         <Search />
